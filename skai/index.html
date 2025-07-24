@@ -2,39 +2,33 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Skai TV Live</title>
-  <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
-  <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
+  <title>Skai Live</title>
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
+      margin: 0; padding: 0; height: 100%; background-color: black;
     }
-    #video-player {
+    #player {
       width: 100%;
       height: 100%;
-    }
-    .video-js {
-      object-fit: cover;
     }
   </style>
 </head>
 <body>
-
-  <video-js
-    id="video-player"
-    class="vjs-default-skin"
-    controls
-    autoplay
-    muted="false"
-    preload="auto"
-    data-setup='{}'>
-    <source src="https://skai-live.siliconweb.com/media/cambria4/index.m3u8" type="application/x-mpegURL" />
-  </video-js>
+  <div id="player"></div>
 
   <script>
+    var player = new Clappr.Player({
+      source: "https://skai-live.siliconweb.com/media/cambria4/index.m3u8",
+      parentId: "#player",
+      autoPlay: true,
+      mute: false,
+      height: "100%",
+      width: "100%",
+      fullscreenEnabled: true,
+      disableControls: true
+    });
+
     document.addEventListener('keydown', function(event) {
       let url = null;
       switch(event.key) {
@@ -48,7 +42,7 @@
           url = 'https://klak404.github.io/livetv/alpha';
           break;
         case '7':
-          url = 'https://klak404.github.io/livetv/star';
+          url = 'https://klak404.github.io/livetv/starr';
           break;
         case '8':
           url = 'https://klak404.github.io/livetv/skai';
@@ -63,6 +57,5 @@
       }
     });
   </script>
-
 </body>
 </html>
