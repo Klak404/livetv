@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Star TV Live</title>
-  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ovenplayer/dist/ovenplayer.js"></script>
   <style>
     html, body {
       margin: 0;
@@ -21,15 +21,15 @@
   <div id="player"></div>
 
   <script>
-    var player = new Clappr.Player({
-      source: "https://livestar.siliconweb.com/media/star4/star4.m3u8",
-      parentId: "#player",
-      autoPlay: true,
+    OvenPlayer.create('player', {
+      autoStart: true,
       mute: false,
-      height: "100%",
-      width: "100%",
-      fullscreenEnabled: true,
-      disableControls: true
+      controls: false,
+      sources: [{
+        label: "Star TV",
+        type: "hls",
+        file: "https://livestar.siliconweb.com/media/star4/star4.m3u8"
+      }]
     });
 
     document.addEventListener('keydown', function(event) {
@@ -54,7 +54,7 @@
           url = 'https://klak404.github.io/livetv/open';
           break;
       }
-      if(url) {
+      if (url) {
         event.preventDefault();
         window.location.replace(url);
       }
