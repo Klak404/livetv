@@ -21,7 +21,7 @@
   <div id="player"></div>
 
   <script>
-    new Clappr.Player({
+    var player = new Clappr.Player({
       source: "https://livestar.siliconweb.com/media/star4/star4.m3u8",
       parentId: "#player",
       autoPlay: true,
@@ -29,34 +29,37 @@
       height: "100%",
       width: "100%",
       fullscreenEnabled: true,
+      disableControls: true
     });
 
-
-  document.addEventListener('keydown', function(event) {
-    switch(event.key) {
-      case '4':
-        window.location.href = 'https://klak404.github.io/livetv/mega';
-        break;
-      case '5':
-        window.location.href = 'https://klak404.github.io/livetv/ant1';
-        break;
-      case '6':
-        window.location.href = 'https://klak404.github.io/livetv/alpha';
-        break;
-      case '7':
-        window.location.href = 'https://klak404.github.io/livetv/star';
-        break;
-      case '8':
-        window.location.href = 'https://klak404.github.io/livetv/skai';
-        break;
-      case '9':
-        window.location.href = 'https://klak404.github.io/livetv/open';
-        break;
-    }
-  });
-  
+    document.addEventListener('keydown', function(event) {
+      let url = null;
+      switch(event.key) {
+        case '4':
+          url = 'https://klak404.github.io/livetv/mega';
+          break;
+        case '5':
+          url = 'https://klak404.github.io/livetv/ant1';
+          break;
+        case '6':
+          url = 'https://klak404.github.io/livetv/alpha';
+          break;
+        case '7':
+          url = 'https://klak404.github.io/livetv/star';
+          break;
+        case '8':
+          url = 'https://klak404.github.io/livetv/skai';
+          break;
+        case '9':
+          url = 'https://klak404.github.io/livetv/open';
+          break;
+      }
+      if(url) {
+        event.preventDefault();
+        window.location.replace(url);
+      }
+    });
   </script>
-
 
 </body>
 </html>
