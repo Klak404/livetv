@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="el">
 <head>
-  <meta charset="utf-8">
-  <title>Star TV Live</title>
-  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Live TV Hub</title>
   <style>
-    html, body {
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
       margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
+      padding: 2rem;
+      text-align: center;
     }
-    #player {
-      width: 100%;
-      height: 100%;
+    h1 {
+      color: #00ffff;
+    }
+    .channel-list a {
+      display: inline-block;
+      margin: 1rem;
+      padding: 1rem 2rem;
+      background: #222;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+    .channel-list a:hover {
+      background: #00ffff;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div id="player"></div>
-
-  <script>
-    new Clappr.Player({
-      source: "https://livestar.siliconweb.com/media/star4/star4.m3u8",
-      parentId: "#player",
-      autoPlay: true,
-      mute: false,
-      height: "100%",
-      width: "100%",
-      fullscreenEnabled: true
-    });
-  </script>
+  <h1>Επιλογή Καναλιών Live</h1>
+  <div class="channel-list">
+    <a href="/livetv/star">Star TV</a>
+    <a href="/livetv/skai">SKAI TV</a>
+    <a href="/livetv/ert1">ERT1</a>
+    <a href="/livetv/alpha">Alpha TV</a>
+    <a href="/livetv/antenna">ANT1</a>
+  </div>
 </body>
 </html>
