@@ -38,12 +38,44 @@
   <h1>Επιλογή Καναλιών Live</h1>
   <div class="channel-list">
     <!--<a href="/livetv/ert1" style="background: rgb(17, 211, 53);">ERT1</a>-->
-    <a href="https://embed.vindral.com/?core.channelId=alteregomedia_megatv1_ci_6cc490c7-e5c6-486b-acf0-9bb9c20fa670&core.minBufferTime=2000&player.aspectRatio=16:9" style="background: rgb(211, 17, 179);">Mega</a>
-    <a href="https://www.antenna.gr/live" style="background: rgb(62, 62, 62);"><strong>ANT1</strong></a><br>
-    <a href="https://netnix.tv/countries/gr/channels/alpha-hd" style="background: #ef3b40;">Alpha TV</a>
-    <a href="/livetv/star" style="background: #b71234">Star TV</a><br>
-    <a href="/livetv/skai" style="background: #2672ff">SKAI TV</a>
-    <a href="/livetv/open" style="background: #cc5500">OPEN TV</a><br>
+    <a href="https://embed.vindral.com/?core.channelId=alteregomedia_megatv1_ci_6cc490c7-e5c6-486b-acf0-9bb9c20fa670&core.minBufferTime=2000&player.aspectRatio=16:9" style="background: rgb(211, 17, 179);" id="mega-link">Mega</a>
+    <a href="https://www.antenna.gr/live" style="background: rgb(62, 62, 62);" id="ant1-link"><strong>ANT1</strong></a><br>
+    <a href="https://netnix.tv/countries/gr/channels/alpha-hd" style="background: #ef3b40;" id="alpha-link">Alpha TV</a>
+    <a href="/livetv/star" style="background: #b71234" id="star-link">Star TV</a><br>
+    <a href="/livetv/skai" style="background: #2672ff" id="skai-link">SKAI TV</a>
+    <a href="/livetv/open" style="background: #cc5500" id="open-link">OPEN TV</a><br>
   </div>
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      let linkId = null;
+      switch(event.key) {
+        case '4':
+          linkId = 'mega-link';
+          break;
+        case '5':
+          linkId = 'ant1-link';
+          break;
+        case '6':
+          linkId = 'alpha-link';
+          break;
+        case '7':
+          linkId = 'star-link';
+          break;
+        case '8':
+          linkId = 'skai-link';
+          break;
+        case '9':
+          linkId = 'open-link';
+          break;
+      }
+      if (linkId) {
+        const link = document.getElementById(linkId);
+        if (link) {
+          window.location.href = link.href;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
