@@ -1,1 +1,34 @@
-<iframe src="https://www.tvopen.gr/OpenTVLive?autoplay=true" style="border:0" width="640" height="360" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Open TV Live</title>
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+    }
+    #player {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="player"></div>
+  <script>
+    new Clappr.Player({
+      source: "https://dai.google.com/linear/hls/event/TVzU2cRuQHCIReS0vkhhvw/master.m3u8", // Λειτουργικό Open TV .m3u8 stream
+      parentId: "#player",
+      autoPlay: true,
+      mute: false,
+      height: "100%",
+      width: "100%",
+      fullscreenEnabled: true
+    });
+  </script>
+</body>
+</html>
