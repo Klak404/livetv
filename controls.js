@@ -14,7 +14,7 @@ document.addEventListener('keydown', function(event) {
       url = 'https://klak404.github.io/livetv/alpha';
       break;
     case '7':
-      url = 'https://klak404.github.io/livetv/star';
+      url = 'https://klak404.github.io/livetv/starr';
       break;
     case '8':
       url = 'https://klak404.github.io/livetv/skai';
