@@ -32,7 +32,14 @@
       disableControls: true
     });
   </script>
-  <script src="../controls.js"></script>
+  
+
+  <script>
+  const script = document.createElement('script');
+  script.src = '../controls.js?v=' + new Date().getTime();
+  document.body.appendChild(script);
+</script>
+
 
 </body>
 </html>
