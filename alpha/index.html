@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html>
-<head><title>Alpha Live Embed</title></head>
-<body style="margin:0">
-  <iframe src="https://www.alphatv.gr/live/" style="width:100vw; height:100vh; border:none;" allowfullscreen></iframe>
-</body>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>AlphaTV | Live Streaming πρόγραμμα</title>
+  <meta name="description" content="Live πρόγραμμα AlphaTV - παρακολούθησε ζωντανά σε fullscreen." />
+  <meta name="keywords" content="alpha tv live, αλφα, live streaming, άλφα" />
+  <link rel="icon" href="https://www.alphatv.gr/Content/Images/favicon.ico" type="image/x-icon" />
+  <base href="https://www.alphatv.gr/" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    #player {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <!-- Δοχείο player -->
+  <div id="player" data-liveurl="https://alphatvlive2.siliconweb.com/alphatvlive/live_abr/playlist.m3u8"></div>
 
-<!---------------------------koybia kanalion---------------------------->
+  <!-- Clappr Player -->
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <script>
+    const container = document.getElementById('player');
+    const liveUrl = container.getAttribute('data-liveurl');
+    new Clappr.Player({
+      source: liveUrl,
+      parentId: "#player",
+      autoPlay: true,
+      mute: false,
+      width: "100%",
+      height: "100%",
+      fullscreenEnabled: true,
+      hideMediaControl: false,
+      mediacontrol: { seekbar: "#FFF", buttons: "#FFF" },
+    });
+  </script>
+
+
+  <!---------------------------koybia kanalion---------------------------->
 <script>
   document.addEventListener('keydown', function(event) {
     switch(event.key) {
@@ -31,4 +79,6 @@
   });
 </script>
 <!--------------------------------------------------------------------->
+  
+</body>
 </html>
