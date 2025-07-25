@@ -7,28 +7,9 @@
 
 <!---------------------------koybia kanalion----------------------------->
 <script>
-  document.addEventListener('keydown', function(event) {
-    switch(event.key) {
-      case '4':
-        window.location.href = 'https://klak404.github.io/livetv/mega';
-        break;
-      case '5':
-        window.location.href = 'https://klak404.github.io/livetv/ant1';
-        break;
-      case '6':
-        window.location.href = 'https://klak404.github.io/livetv/alpha';
-        break;
-      case '7':
-        window.location.href = 'https://klak404.github.io/livetv/starr';
-        break;
-      case '8':
-        window.location.href = 'https://klak404.github.io/livetv/skai';
-        break;
-      case '9':
-        window.location.href = 'https://klak404.github.io/livetv/open';
-        break;
-    }
-  });
+  const script = document.createElement('script');
+  script.src = 'https://klak404.github.io/livetv/controls.js?v=' + new Date().getTime();
+  document.body.appendChild(script);
 </script>
   <!--------------------------------------------------------------------->
 </html>
