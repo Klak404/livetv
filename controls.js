@@ -1,31 +1,39 @@
 document.addEventListener('keydown', function(event) {
+  let key = event.key;
   let url = null;
-  switch(event.key) {
-    case '1':
-      url = 'https://klak404.github.io/livetv/ert1';
-      break;
+
+  const base = 'https://klak404.github.io/livetv';
+  const currentPath = window.location.pathname;
+
+  switch (key) {
     case '4':
-      url = 'https://klak404.github.io/livetv/mega';
+      url = `${base}/mega`;
       break;
     case '5':
-      url = 'https://klak404.github.io/livetv/ant1';
+      url = `${base}/ant1`;
       break;
     case '6':
-      url = 'https://klak404.github.io/livetv/alpha';
+      url = `${base}/alpha`;
       break;
     case '7':
-      url = 'https://klak404.github.io/livetv/starr';
+      url = `${base}/starr`;
       break;
     case '8':
-      url = 'https://klak404.github.io/livetv/skai';
+      url = `${base}/skai`;
       break;
     case '9':
-      url = 'https://klak404.github.io/livetv/open';
+      url = `${base}/open`;
       break;
   }
 
   if (url) {
     event.preventDefault();
-    window.location.replace(url);
+
+    // Αν είμαστε ήδη στο κανάλι που δείχνει το url, τότε πάμε στην αρχική
+    if (window.location.href.startsWith(url)) {
+      window.location.replace(base);  // Πήγαινε στην αρχική
+    } else {
+      window.location.replace(url);   // Πήγαινε στο νέο κανάλι
+    }
   }
 });
