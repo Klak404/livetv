@@ -29,8 +29,17 @@
       transition: 0.7s;
     }
 
+    #ert1-link {
+      background: rgb(17, 211, 53);
+    }
+    #ert1-link:hover {
+      background: rgba(17, 211, 53, 0.434);
+      transform: scale(1.2);
+      transition: 0.7s;
+    }
 
-    #mega-link {
+
+#mega-link {
       background: rgb(211, 17, 179);
     }
 
@@ -85,12 +94,13 @@
       transition: 0.7s;
     }
 
+
   </style>
 </head>
 <body>
   <h1>Επιλογή Καναλιών Live</h1>
   <div class="channel-list">
-    <!--<a href="/livetv/ert1" style="background: rgb(17, 211, 53);">ERT1</a>-->
+    <a href="/livetv/ert1" id="ert1-link">ERT1</a><br>
     <a href="/livetv/mega" id="mega-link">Mega</a>
     <a href="/livetv/ant1" id="ant1-link"><strong>ANT1</strong></a><br>
     <a href="/livetv/alpha" id="alpha-link">Alpha TV</a>
@@ -103,6 +113,9 @@
     document.addEventListener('keydown', function(event) {
       let linkId = null;
       switch(event.key) {
+        case '1':
+          linkId = 'ert1-link';
+          break;
         case '4':
           linkId = 'mega-link';
           break;
