@@ -1,32 +1,40 @@
-// api/program.js
-import { JSDOM } from 'jsdom';
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 export default async function handler(req, res) {
   try {
-    const response = await fetch('https://www.digea.gr/el/tileoptikoi-stathmoi/ilektronikos-odigos-programmatos');
-    const html = await response.text();
-
-    const dom = new JSDOM(html);
-    const document = dom.window.document;
-
-    const tableRows = document.querySelectorAll('.epg-program-table tbody tr');
-
-    const data = [];
-
-    tableRows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      if (cells.length >= 3) {
-        data.push({
-          time: cells[0].textContent.trim(),
-          channel: cells[1].textContent.trim(),
-          title: cells[2].textContent.trim()
-        });
+    const url = 'https://www.digea.gr/el/tileoptikoi-stathmoi/ilektronikos-odigos-programmatos';
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+                      '(KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+        'Accept-Language': 'el-GR,el;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Referer': 'https://www.digea.gr/'
       }
     });
 
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(data);
+    const $ = cheerio.load(response.data);
+
+    let channels = [];
+
+    $('.programme__wrapper').each((i, el) => {
+      if (i >= 3) return false; // μόνο 3 κανάλια για δοκιμή
+      const name = $(el).find('.programme__header h3').text().trim();
+
+      let shows = [];
+      $(el).find('.programme__item').each((j, show) => {
+        const time = $(show).find('.programme__time').text().trim();
+        const title = $(show).find('.programme__title').text().trim();
+        shows.push({ time, title });
+      });
+
+      channels.push({ name, shows });
+    });
+
+    res.status(200).json(channels);
+
   } catch (error) {
-    res.status(500).json({ error: 'Σφάλμα κατά το scraping.' });
+    console.error('Error fetching program:', error.message);
+    res.status(500).json({ error: 'Αποτυχία φόρτωσης προγράμματος' });
   }
 }
