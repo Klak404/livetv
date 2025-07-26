@@ -6,6 +6,9 @@ document.addEventListener('keydown', function(event) {
   const currentPath = window.location.pathname;
 
   switch (key) {
+    case '0':
+      url = `${base}/program`;
+      break;
     case '1':
       url = `${base}/ert1`;
       break;
