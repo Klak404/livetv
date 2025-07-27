@@ -7,7 +7,7 @@ document.addEventListener('keydown', function(event) {
 
   switch (key) {
     case '0':
-      url = `${base}/program`;
+      url = `${base}/youcha`;
       break;
     case '1':
       url = `${base}/ert1`;
