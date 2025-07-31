@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Playlist Embed</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/videoseries?list=PLcvEW8U926150Lldl41M5M6BRdaZhxLPn&autoplay=1&mute=0&controls=0&rel=0&iv_load_policy=3"
+    allow="autoplay; fullscreen; encrypted-media"
+    allowfullscreen>
+  </iframe>
+
+
+
+  <!---------------------------koybia kanalion---------------------------->
+<script>
+  const script = document.createElement('script');
+  script.src = 'https://klak404.github.io/livetv/controls.js?v=' + new Date().getTime();
+  document.body.appendChild(script);
+</script>  
+<!--------------------------------------------------------------------->
+</body>
+</html>
