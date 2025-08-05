@@ -20,118 +20,79 @@
   <div id="player"></div>
 
   <script>
-    // IDs από την playlist
-    const videos = [
-  "EpTFhVkxakM",
-  "zqPo0Eh4lIs",
-  "rkAFDwnh8wk",
-  "o6wk0YFF-Ps",
-  "quxiSJMqrHk",
-  "yflDZCE2nNA",
-  "dWnNzIr52ZY",
-  "4KL5FhQfVF8",
-  "tr21rsUi_Go",
-  "_RLkB4N4Iu8",
-  "0-E9E-3vw4Y",
-  "RGzvEkTQM0Y",
-  "ieGuo8Q0Hsk",
-  "PSv2PaO_4vQ",
-  "hI4aWF9ulwc",
-  "viMuxMSkaXE",
-  "lEhsrk16zYc",
-  "3Vj3FOhDAyM",
-  "hAnqVTNJS8I",
-  "nfq_k33tDGs",
-  "fA1Z4FEZ9Q4",
-  "2gwlcCAv2sg",
-  "DvTyDvEWbBc",
-  "mH6yh9B-M3U",
-  "1mYxNQ6Tmb4",
-  "1mYxNQ6Tmb4",
-  "w8nTJC988C0",
-  "uiVOlrdAMcA",
-  "kYsOF0eLJVA",
-  "14AsNtuGdbw",
-  "eXU0mH2H2DY",
-  "igsnHcvWEDM",
-  "_i_E6oS50K0",
-  "FToB0D5IwDE",
-  "SdGOZ81KObU",
-  "rJEWIqF7110",
-  "yE91VQloQC4",
-  "YVb4gCKFphs",
-  "ur1-03D5htg",
-  "2gWF7w4HvqI",
-  "JK1jWi8GpOw",
-  "ql9KrEMOHq8",
-  "1NnnoFdbLcE",
-  "B_EteMJtHok",
-  "m4Vvu43JdKY",
-  "2QbjbR-3gfA",
-  "zzNlfsbpfh8",
-  "Ktz44OSwHEI",
-  "gxPsitgJXyQ",
-  "lgE-FIcYaVk",
-  "KP4r6ifomgI",
-  "YYWXSHYNNOk",
-  "fRv2bwTVpgk",
-  "dn6GEpqUsbU",
-  "kw3CirrJ_es",
-  "6Gv0mJROF04",
-  "P1F86tlsJE8",
-  "l5C34O5HgDw",
-  "fmRelSX8xXI",
-  "Qw_6sLt86vE",
-  "Cmdh9BdGhfo",
-  "d0ASm1pt8VU",
-  "yswHPYg-CZY",
-  "XMUOCd-WEMk",
-  "2BXR3ALMPls",
-  "ywUVMYESBas",
-  "BIMUAcPd8zg"
-];
+  // Αρχική λίστα με όλα τα videos
+  const originalVideos = [
+    "EpTFhVkxakM", "zqPo0Eh4lIs", "rkAFDwnh8wk", "o6wk0YFF-Ps", "quxiSJMqrHk",
+    "yflDZCE2nNA", "dWnNzIr52ZY", "4KL5FhQfVF8", "tr21rsUi_Go", "_RLkB4N4Iu8",
+    "0-E9E-3vw4Y", "RGzvEkTQM0Y", "ieGuo8Q0Hsk", "PSv2PaO_4vQ", "hI4aWF9ulwc",
+    "viMuxMSkaXE", "lEhsrk16zYc", "3Vj3FOhDAyM", "hAnqVTNJS8I", "nfq_k33tDGs",
+    "fA1Z4FEZ9Q4", "2gwlcCAv2sg", "DvTyDvEWbBc", "mH6yh9B-M3U", "1mYxNQ6Tmb4",
+    "w8nTJC988C0", "uiVOlrdAMcA", "kYsOF0eLJVA", "14AsNtuGdbw", "eXU0mH2H2DY",
+    "igsnHcvWEDM", "_i_E6oS50K0", "FToB0D5IwDE", "SdGOZ81KObU", "rJEWIqF7110",
+    "yE91VQloQC4", "YVb4gCKFphs", "ur1-03D5htg", "2gWF7w4HvqI", "JK1jWi8GpOw",
+    "ql9KrEMOHq8", "1NnnoFdbLcE", "B_EteMJtHok", "m4Vvu43JdKY", "2QbjbR-3gfA",
+    "zzNlfsbpfh8", "Ktz44OSwHEI", "gxPsitgJXyQ", "lgE-FIcYaVk", "KP4r6ifomgI",
+    "YYWXSHYNNOk", "fRv2bwTVpgk", "dn6GEpqUsbU", "kw3CirrJ_es", "6Gv0mJROF04",
+    "P1F86tlsJE8", "l5C34O5HgDw", "fmRelSX8xXI", "Qw_6sLt86vE", "Cmdh9BdGhfo",
+    "d0ASm1pt8VU", "yswHPYg-CZY", "XMUOCd-WEMk", "2BXR3ALMPls", "ywUVMYESBas",
+    "BIMUAcPd8zg"
+  ];
 
-    let player;
+  let remainingVideos = [...originalVideos]; // Αντίγραφο που θα μικραίνει
+  let player;
 
-    // Εισάγουμε το YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(tag);
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
 
-    // Όταν φορτωθεί το API, δημιουργείται το player
-    function onYouTubeIframeAPIReady() {
+  function onYouTubeIframeAPIReady() {
+    loadRandomVideo();
+  }
+
+  function loadRandomVideo() {
+    if (remainingVideos.length === 0) {
+      // Επαναφορά λίστας αν τελείωσαν όλα
+      remainingVideos = [...originalVideos];
+    }
+
+    const index = Math.floor(Math.random() * remainingVideos.length);
+    const randomId = remainingVideos.splice(index, 1)[0]; // Αφαιρεί το ID
+
+    if (player) {
+      player.loadVideoById(randomId);
+    } else {
+      player = new YT.Player('player', {
+        host: "https://www.youtube-nocookie.com",
+        videoId: randomId,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          rel: 0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+          showinfo: 0
+          enablejsapi: 1
+        },
+        events: {
+          onStateChange: onPlayerStateChange,
+          onError: onPlayerError
+        }
+      });
+    }
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
       loadRandomVideo();
     }
+  }
 
-    function loadRandomVideo() {
-      const randomId = videos[Math.floor(Math.random() * videos.length)];
-      if (player) {
-        player.loadVideoById(randomId);
-      } else {
-        player = new YT.Player('player', {
-        host: "https://www.youtube-nocookie.com",
-          videoId: randomId,
-          playerVars: {
-            autoplay: 1,
-            controls: 0,
-            rel: 0,
-            modestbranding: 1,
-            iv_load_policy: 3,
-            showinfo: 0
-          },
-          events: {
-            onStateChange: onPlayerStateChange
-          }
-        });
-      }
-    }
+  function onPlayerError(event) {
+    console.warn("Βρέθηκε σφάλμα, γίνεται παράκαμψη...");
+    loadRandomVideo();
+  }
+</script>
 
-    function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.ENDED) {
-        loadRandomVideo(); // Όταν τελειώσει το βίντεο, παίζει άλλο
-      }
-    }
-  </script>
   
   
   <!---------------------------koybia kanalion---------------------------->
