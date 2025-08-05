@@ -119,7 +119,8 @@
             showinfo: 0
           },
           events: {
-            onStateChange: onPlayerStateChange
+            onStateChange: onPlayerStateChange,
+            onError: onPlayerError
           }
         });
       }
@@ -129,6 +130,11 @@
       if (event.data === YT.PlayerState.ENDED) {
         loadRandomVideo(); // Όταν τελειώσει το βίντεο, παίζει άλλο
       }
+    }
+
+    function onPlayerError(event) {
+      console.warn("Βρέθηκε σφάλμα, γίνεται παράκαμψη...");
+      loadRandomVideo();
     }
   </script>
   
