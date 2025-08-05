@@ -109,6 +109,7 @@
         player.loadVideoById(randomId);
       } else {
         player = new YT.Player('player', {
+        host: "https://www.youtube-nocookie.com",
           videoId: randomId,
           playerVars: {
             autoplay: 1,
