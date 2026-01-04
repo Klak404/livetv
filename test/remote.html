@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Remote Control Pro</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding: 10px; }
+        .card { background: #333; padding: 15px; border-radius: 15px; max-width: 450px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        
+        .remote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .btn-channel { padding: 15px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; color: white; transition: 0.3s; }
+        
+        /* Χρώματα για τα κουμπιά */
+        .btn-alpha { background: #ef3b40; }
+        .btn-star { background: #b71234; }
+        .btn-ert { background: #11d335; }
+        .btn-open { background: #cc5500; }
+        .btn-skai { background: #2672ff; }
+        .btn-yt { background: #ff0000; }
+        
+        .btn-channel:hover { transform: scale(1.05); opacity: 0.8; }
+
+        input, select, button.action-btn { width: 100%; padding: 12px; margin: 5px 0; border-radius: 8px; border: none; box-sizing: border-box; }
+        button.action-btn { background: #00ffcc; color: black; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        
+        textarea { width: 100%; height: 80px; background: #000; color: #00ff00; font-family: monospace; border-radius: 5px; margin-top: 10px; }
+        label { display: block; margin-top: 10px; font-size: 0.9em; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <h1>TV Remote</h1>
+    
+    <div class="card">
+        <h3>Γρήγορη Επιλογή</h3>
+        <div class="remote-grid">
+            <button class="btn-channel btn-alpha" onclick="quickSet('hls', 'https://alphatvlive2.siliconweb.com/alphatvlive/live_abr/playlist.m3u8')">ALPHA</button>
+            <button class="btn-channel btn-star" onclick="quickSet('hls', 'https://livestar.siliconweb.com/media/star4/star4.m3u8')">STAR</button>
+            <button class="btn-channel btn-ert" onclick="quickSet('hls', 'https://ertflix.akamaized.net/ertlive/ert1/clrdef24723b/playlist.m3u8')">ERT 1</button>
+            <button class="btn-channel btn-open" onclick="quickSet('hls', 'https://liveopen.siliconweb.com/openTvLive/liveopen/playlist.m3u8')">OPEN</button>
+            <button class="btn-channel btn-skai" onclick="quickSet('hls', 'https://skai-live.siliconweb.com/media/cambria4/index.m3u8')">SKAI</button>
+            <button class="btn-channel btn-yt" onclick="quickSet('youtube', 'jfKfPfyJRdk')">LIVE DRONE</button>
+        </div>
+
+        <hr style="border: 0.5px solid #444;">
+
+        <h3>Custom Πηγή</h3>
+        <label>Τύπος:</label>
+        <select id="type">
+            <option value="hls">Live Stream (m3u8)</option>
+            <option value="youtube">YouTube ID</option>
+        </select>
+
+        <label>Link ή ID:</label>
+        <input type="text" id="source" placeholder="URL ή YouTube ID...">
+
+        <button class="action-btn" onclick="generateJSON()">1. Δημιουργία Κώδικα</button>
+
+        <textarea id="output" readonly placeholder="Ο κώδικας θα εμφανιστεί εδώ..."></textarea>
+        
+        <button class="action-btn" style="background: #555; color: white;" onclick="copyCode()">2. Αντιγραφή & Πάτα Commit στο GitHub</button>
+    </div>
+
+    <script>
+        // Λειτουργία για τα έτοιμα κουμπιά
+        function quickSet(type, url) {
+            document.getElementById('type').value = type;
+            document.getElementById('source').value = url;
+            generateJSON();
+        }
+
+        function generateJSON() {
+            const type = document.getElementById('type').value;
+            const source = document.getElementById('source').value;
+            const json = {
+                "currentSource": source,
+                "type": type
+            };
+            document.getElementById('output').value = JSON.stringify(json, null, 2);
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("output");
+            if (!copyText.value) {
+                alert("Πρώτα δημιούργησε τον κώδικα!");
+                return;
+            }
+            copyText.select();
+            document.execCommand("copy");
+            alert("Ο κώδικας αντιγράφηκε! Τώρα πήγαινε στο GitHub και κάνε επικόλληση στο control.json");
+        }
+    </script>
+</body>
+</html>
