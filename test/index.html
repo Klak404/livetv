@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Admin Control Channel</title>
+  <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <style>
+    html, body, #player { height: 100%; margin: 0; background: black; }
+  </style>
+</head>
+<body>
+  <div id="player"></div>
+
+  <script>
+    let currentUrl = "";
+    let player = null;
+
+    function initPlayer(source) {
+      player = new Clappr.Player({
+        source: source,
+        parentId: "#player",
+        autoPlay: true,
+        width: "100%",
+        height: "100%"
+      });
+      currentUrl = source;
+    }
+
+    async function checkUpdates() {
+      try {
+        // Προσθήκη timestamp για να μην κρατάει cache ο browser
+        const response = await fetch('../control.json?t=' + Date.now());
+        const data = await response.json();
+
+        if (data.currentSource !== currentUrl) {
+          console.log("Αλλαγή πηγής σε: " + data.currentSource);
+          if (!player) {
+            initPlayer(data.currentSource);
+          } else {
+            player.replaceVideo(data.currentSource);
+            currentUrl = data.currentSource;
+          }
+        }
+      } catch (e) {
+        console.error("Σφάλμα στην ενημέρωση:", e);
+      }
+    }
+
+    // Έλεγχος για αλλαγές κάθε 30 δευτερόλεπτα
+    setInterval(checkUpdates, 30000);
+    checkUpdates();
+  </script>
+
+  <script src="../controls.js"></script>
+</body>
+</html>
