@@ -9,9 +9,9 @@ document.addEventListener('keydown', function(event) {
     case '0':
       url = `${base}/youcha`;
       break;
-    case '1':
+   /* case '1':
       url = `${base}/ert1`;
-      break;
+      break;*/
     case '4':
       url = `${base}/mega`;
       break;
