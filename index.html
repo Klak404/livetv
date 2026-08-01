@@ -38,8 +38,17 @@
       transition: 0.7s;
     }
 
+    #j2us-link {
+      background: rgb(132, 5, 201);
+    }
+    #j2us-link:hover {
+      background: rgba(132, 5, 201, 0.434);
+      transform: scale(1.2);
+      transition: 0.7s;
+    }
 
-#mega-link {
+
+    #mega-link {
       background: rgb(211, 17, 179);
     }
 
@@ -126,8 +135,9 @@
   <a href="/livetv/program/index.html" id="program-button">Πρόγραμμα</a>
   <h1>Επιλογή Καναλιών Live</h1>
   <div class="channel-list">
-    <a href="/livetv/youcha" id="youcha-link">Travel tv</a><br>
+    <a href="/livetv/youcha" id="youcha-link">Travel tv</a>
     <!--<a href="/livetv/ert1" id="ert1-link">ERT1</a><br>-->
+    <a href="/livetv/j2us" id="j2us-link">Just the 2 of us</a><br>
     <a href="/livetv/mega" id="mega-link">Mega</a>
     <a href="/livetv/ant1" id="ant1-link"><strong>ANT1</strong></a><br>
     <a href="/livetv/alpha" id="alpha-link">Alpha TV</a>
@@ -146,6 +156,9 @@
         /*case '1':
           linkId = 'ert1-link';
           break;*/
+        case '2':
+          linkId = 'j2us-link';
+          break;
         case '4':
           linkId = 'mega-link';
           break;
@@ -176,6 +189,6 @@
 </body>
 
 <footer>
-  <p>&copy; 2025 Klak404. All rights reserved.</p>
+  <p>&copy; 2025-2026 Klak404. All rights reserved.</p>
 </footer>
 </html>

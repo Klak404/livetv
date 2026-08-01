@@ -12,6 +12,9 @@ document.addEventListener('keydown', function(event) {
    /* case '1':
       url = `${base}/ert1`;
       break;*/
+    case '2':
+      url = `${base}/j2us`;
+      break;
     case '4':
       url = `${base}/mega`;
       break;
